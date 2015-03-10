@@ -1,0 +1,119 @@
+﻿@{
+
+    ViewBag.Title = "FrequentlyAskedQuestions";
+}
+
+@helper AccordionTitle(string title, string accordionId, int itemNumber)
+{
+    <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#@accordionId" href="@("#collapse" + itemNumber.ToString())" aria-expanded="true" aria-controls="@("collapse" + itemNumber.ToString())">
+                @title
+            </a>
+        </h4>
+    </div>
+
+}
+
+@helper AccordionContent(string content, string accordionId, int itemNumber)
+{
+    <div id="@("collapse" + itemNumber.ToString())" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@("heading" + itemNumber.ToString())">
+        <div class="panel-body">
+            @content
+        </div>
+    </div>
+
+}
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>General questions</h3>
+
+<div class="panel-group" id="accordionGeneral" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        @AccordionTitle("How many members are on a select committee?","accordionGeneral", 1)
+        @AccordionContent("The membership of committees change with each new parliament. In the 51st parliament select committees have between 5-11 permanent members. If a member is unable to attend a meeting, then temporary replacement members can fill in for them.", "accordionGeneral", 1)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Do committees only meet in Wellington?", "accordionGeneral", 2)
+        @AccordionContent("Usually committees meet in Wellington. However a committee may choose to travel if there is a substantial volume of submitters wishing to be heard in a location outside of Wellington.", "accordionGeneral", 2)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Where do select committees fit in the parliamentary process?", "accordionGeneral", 3)
+        @AccordionContent("After a bill is introduced, it has its first reading in the House. Following this, a bill can be referred to a select committee. Once the committee has reported its recommendations and findings back to the House, the bill will undergo its second and third reading.", "accordionGeneral", 3)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("How do I contact Select Committee Services?", "accordionGeneral", 0)
+        @AccordionContent("Select Committee Services can be contacted at select.committees@parliament.govt.nz. The phone numbers for the clerks of individual committees are available on the www.parliament.nz website.", "accordionGeneral", 0)
+    </div>
+</div>
+
+<h3>Making a submission</h3>
+
+<div class="panel-group" id="accordionSubmission" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        @AccordionTitle("How do I make a submission?", "accordionSubmission", 4)
+        @AccordionContent("You can make a submission online at www.parliament.nz. Alternatively, you can send your submission by post to the committee secretariat. The address to use is: Committee Secretariat, [Committee Name], Parliament Buildings, Wellington.", "accordionSubmission", 4)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("What happens once I have submitted?", "accordionSubmission", 5)
+        @AccordionContent("You will recieve a confirmation email. If you have requested to be heard orally, a member of the committee secreteriat may contact you to arrange a hearing.", "accordionSubmission", 5)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Will my submission be put online?", "accordionSubmission", 7)
+        @AccordionContent("Generally, all submissions are made available online. Under certain circumstances it is possible to make a secret submission. Please contact the committee secreteriat if you would like further information.", "accordionSubmission", 7)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Is there a limit to the length of my submission?", "accordionSubmission", 8)
+        @AccordionContent("No, but please ensure that your submission stays within the scope of the bill to assist committee members in their scrutiny of the legislation.", "accordionSubmission", 8)
+    </div>
+</div>
+
+<h3>Oral submissions</h3>
+
+<div class="panel-group" id="accordionOral" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        @AccordionTitle("Am I guaranteed to be heard orally if I choose this option?", "accordionOral", 9)
+        @AccordionContent("No. The committee will hear from oral submitters at their discretion. Generally they will try to hear from as many oral submitters as time allows.", "accordionOral", 9)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("How long will it take for the committee secreteriat to contact me?", "accordionOral", 6)
+        @AccordionContent("This depends on the workload of the committee. If there are a large number of submitters, the committee may also choose not hear from all submitters.", "accordionOral", 6)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Do I have to appear in person?", "accordionOral", 10)
+        @AccordionContent("No. Teleconferencing and videoconferencing facilities are available.", "accordionOral", 10)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("What types of teleconferencing and videoconferencing facilities are available?", "accordionOral", 11)
+        @AccordionContent("Teleconferencing can be conducted over any regular telephone (landline numbers are preferable). Videoconferencing needs to be conducted through compatable videoconferencing equipment. Please contact the committee secretariat for more details.", "accordionOral", 11)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Can I use Skype?", "accordionOral", 12)
+        @AccordionContent("Currently you cannot make an oral submission using Skype.", "accordionOral", 12)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Will the MPs ask me questions?", "accordionOral", 13)
+        @AccordionContent("Generally members will ask submitters questions.", "accordionOral", 13)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("How long will I be given to speak?", "accordionOral", 14)
+        @AccordionContent("This depends on the workload of the committee. Generally you will have between 5 and 20 minutes to speak. You will be notified by the committee secretariat of your allocated time slot.", "accordionOral", 14)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Can I bring extra material to the hearing?", "accordionOral", 15)
+        @AccordionContent("Yes. Please email this to the committee secretariat several working days prior to your hearing date.", "accordionOral", 15)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Are meeting venues disability friendly?", "accordionOral", 16)
+        @AccordionContent("Our select committee rooms are disability friendly. Please advise the committee secretariat if you have special requirements.", "accordionOral", 16)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("Can I use a PowerPoint presentation?", "accordionOral", 17)
+        @AccordionContent("Yes, however you must email the presentation to the committee secretariat in advance. Bringing a PowerPoint presentation via USB is not permitted.", "accordionOral", 17)
+    </div>
+    <div class="panel panel-default">
+        @AccordionTitle("When will I know to enter the committee room?", "accordionOral", 18)
+        @AccordionContent("A member of the committee secretariat will open the room to the public and invite you into the room when the committee has come to the corresponding item of business.", "accordionOral", 18)
+    </div>
+</div>

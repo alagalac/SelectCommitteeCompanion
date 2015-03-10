@@ -1,0 +1,6 @@
+﻿
+<ul id="WizardSteps">
+    <li class="@(ViewBag.Step == 1 ? "current" : "completed")">1. Select Item Of Business</li>
+    <li class="@(ViewBag.Step == 2 ? "current" : (ViewBag.Step > 2 ? "completed" : ""))">2. Create Submission</li>
+    <li class="@(ViewBag.Step == 3 ? "current" : (ViewBag.Step > 3 ? "completed" : ""))">3. Confirm Submission</li>
+</ul>

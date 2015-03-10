@@ -1,0 +1,38 @@
+﻿@model SCSubmission.Models.SelectItemOfBusinessModel
+
+@{
+    ViewBag.Title = "Select Item Of Business";
+    ViewBag.Step = 1;
+}
+
+<h2>Items Open for Submission</h2>
+<p>These are the items currently before select committees, and open for submission.</p>
+
+
+
+@using (Html.BeginForm("CreateSubmission", "wizard")) {
+
+    <div>
+        @foreach (var i in Model.ItemsOfBusiness)
+        {
+            <div class="row">
+                <div class="col-lg-2">
+                    <img src="~/Content/images/@i.CommitteeIconName" alt="...">
+                </div>
+                <div class="IOB col-lg-10">
+                    <h3 class="IOB-title">@i.Title</h3>
+                    <strong class="IOB-closing">@i.CommitteeName -  @(i.ClosingDate > DateTime.Now ? "Submissions close " + i.ClosingDate.ToLongDateString() : "Closed for submissions")</strong>
+                    <div class="IOB-description">@i.Description</div>
+                    @if (i.ClosingDate > DateTime.Now)
+                    {
+                        <a href="/Wizard/CreateSubmission?documentId=@i.DocumentId" class="btn btn-primary">Make a submission</a>
+                        <a href="http://www.parliament.nz/en-nz/pb/sc/make-submission/@i.DocumentId">More Details...</a>
+                    }
+                </div>
+            </div>
+            <hr />
+        }
+
+    </div>
+
+}

@@ -1,0 +1,138 @@
+﻿@model SCSubmission.Models.Submission
+
+@{
+    ViewBag.Title = "Confirmation";
+    ViewBag.Step = 3;
+}
+
+<h2>Confirmation</h2>
+
+<p>Please confirm the details of your submission.</p>
+
+@Html.Partial("_WizardSteps")
+
+@using (Html.BeginForm("Confirmation", "wizard", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    @Html.HiddenFor(model => model.AlternativePhoneNumber)
+    @Html.HiddenFor(model => model.CommitteeName)
+    @Html.HiddenFor(model => model.ContactName)
+    @Html.HiddenFor(model => model.DocumentId)
+    @Html.HiddenFor(model => model.EmailAddress)
+    @Html.HiddenFor(model => model.MessageToCommitteeStaff)
+    @Html.HiddenFor(model => model.Organisation)
+    @Html.HiddenFor(model => model.OrganisationName)
+    @Html.HiddenFor(model => model.PhoneNumber)
+    @Html.HiddenFor(model => model.Position)
+    @Html.HiddenFor(model => model.PresentToCommittee)
+    @Html.HiddenFor(model => model.Region)
+    @Html.HiddenFor(model => model.SubmissionContent)
+
+    <fieldset>
+        <legend>Contact information</legend>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactName, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                <p class="help-block">@Model.ContactName</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Position, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                <p class="help-block">@Model.Position</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Organisation, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                <p class="help-block">@Model.Organisation</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailAddress, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                <p class="help-block">@Model.EmailAddress</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                <p class="help-block">@Model.PhoneNumber</p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AlternativePhoneNumber, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                <p class="help-block">@Model.AlternativePhoneNumber</p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Region, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                <p class="help-block">@Model.Region</p>
+            </div>
+        </div>
+    </fieldset>
+
+    <legend>Submission</legend>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.OrganisationName, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-9">
+            <p class="help-block">@Model.OrganisationName</p>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SubmissionContent, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-9">
+            <p class="help-block">@Model.SubmissionContent</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PresentToCommittee, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-9">
+            <p class="help-block">@(Model.PresentToCommittee ? "Yes" : "No") </p>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MessageToCommitteeStaff, new { @class = "col-sm-3 control-label" })
+        <div class="col-sm-9">
+            <p class="help-block">@Model.MessageToCommitteeStaff</p>
+        </div>
+    </div>
+
+    <p>
+        <button type="button" id="submitButton" class="btn btn-primary" value="">Submit to the @Model.CommitteeName</button>
+        <button type="submit" name="action" class="btn" value="back">Go back and edit</button>
+    </p>
+}
+
+
+@section Scripts {
+
+    <script>
+        $(function () {
+            $("#submitButton").click(function () {
+                alert("Sorry but we are unable to send your submission at this time. Please make your submission at www.parliament.nz");
+            });
+        })
+    </script>
+}

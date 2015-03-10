@@ -1,0 +1,146 @@
+﻿@model SCSubmission.Models.Submission
+
+@{
+    ViewBag.Title = "CreateSubmission";
+    ViewBag.Step = 2;
+}
+
+<h2>Create Submission</h2>
+<p>You are creating a submission for the following item of business: @Model.ItemTitle</p>
+
+@Html.Partial("_WizardSteps")
+
+@using (Html.BeginForm("Confirmation", "wizard", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+        @Html.HiddenFor(model => model.DocumentId)
+
+        <fieldset>
+            <legend>Contact information</legend>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ContactName, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.ContactName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ContactName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Position, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.Position, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Position)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Organisation, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.Organisation, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Organisation)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmailAddress, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.EmailAddress, new { @type = "email", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EmailAddress)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber)
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AlternativePhoneNumber, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.AlternativePhoneNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AlternativePhoneNumber)
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Region, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-9">
+                    <select data-val="true" data-val-required="Please select region" class="form-control" id="Region" name="Region">
+                        <option value="Northland">Northland</option>
+                        <option value="Auckland">Auckland</option>
+                        <option value="Waikato">Waikato</option>
+                        <option value="Bay of Plenty">Bay of Plenty</option>
+                        <option value="East Coast">East Coast</option>
+                        <option value="Hawke's Bay">Hawke's Bay</option>
+                        <option value="Taranaki">Taranaki</option>
+                        <option value="Manawatu/Whanganui">Manawatu/Whanganui</option>
+                        <option selected="selected" value="Wellington">Wellington</option>
+                        <option value="Nelson/Marlborough">Nelson/Marlborough</option>
+                        <option value="West Coast">West Coast</option>
+                        <option value="Canterbury">Canterbury</option>
+                        <option value="Otago">Otago</option>
+                        <option value="Southland">Southland</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Other country">Other country</option>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.Region)
+                </div>
+            </div>
+        </fieldset>
+    
+    <legend>Submission</legend>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OrganisationName, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                @Html.TextBoxFor(model => model.OrganisationName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OrganisationName)
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubmissionContent, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                @Html.TextAreaFor(model => model.SubmissionContent, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SubmissionContent)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PresentToCommittee, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                @Html.CheckBoxFor(model => model.PresentToCommittee)
+                @Html.ValidationMessageFor(model => model.PresentToCommittee)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MessageToCommitteeStaff, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-9">
+                @Html.TextAreaFor(model => model.MessageToCommitteeStaff, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MessageToCommitteeStaff)
+            </div>
+        </div>
+
+        <p>
+            <input type="submit" class="btn btn-primary" value="Go to Confirmation" />
+            @Html.ActionLink("Back", "SelectItemOfBusiness", "home", null, new { @class = "btn" })
+        </p>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
